@@ -25,7 +25,8 @@ async function markOrderCompleted(req, res) {
     },
   };
   try {
-    await Order.updateOne({ _id: orderId }, updation);
+    const cur=await Order.updateOne({ _id: orderId }, updation);
+    return res.status(200).send(cur);
   } catch (e) {
     console.log(e);
     res.status(401).send(e);

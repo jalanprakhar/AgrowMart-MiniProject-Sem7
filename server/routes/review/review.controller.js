@@ -2,13 +2,11 @@ const Product = require("../../models/product");
 const Review = require("../../models/review");
 async function addReview(req, res) {
   const { name, desc, rating, productId } = req.body;
-  console.log(rating);
   try {
     const product = await Product.findById(productId);
     if (!product) return res.status(404).send("product not found");
     const newRating = (rating + product.rating * product.number_of_ratings) / (product.number_of_ratings + 1);
     const newNumberOfRatings = product.number_of_ratings + 1;
-    console.log(newRating);
 
     const currentReview = new Review({
       name,
