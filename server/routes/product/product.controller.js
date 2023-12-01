@@ -96,7 +96,7 @@ async function updateProduct(req, res) {
 
 async function deleteProduct(req, res) {
   try {
-    const deletedItem = await Product.findOneAndDelete({ _id: req.params.id });
+    const deletedItem = await Product.findOneAndDelete({ _id: req.body.id });
     if (!deletedItem) {
       return res.status(404).send({ error: "Item not found" });
     }
