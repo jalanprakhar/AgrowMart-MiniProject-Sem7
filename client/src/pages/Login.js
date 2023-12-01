@@ -4,10 +4,12 @@ import login from "../img/login.svg";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { api } from "../api";
+import { toast } from "react-toastify";
 
 export default function Login() {
 
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -21,10 +23,9 @@ export default function Login() {
     api.login(data.email,data.password).then((res)=>{
       setCookie("AuthToken", res.data.token);
       setCookie("UserId", res.data.userId);
-    }).catch((e)=>console.log(e.response.data))
+      navigate("/");
+    }).catch((e)=>toast.error(e.response.data))
   }
-
-  const navigate = useNavigate();
 
   const handleGoToSignup = () => {
     navigate("/signup");

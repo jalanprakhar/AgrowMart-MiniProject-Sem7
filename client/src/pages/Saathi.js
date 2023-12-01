@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
-export default function SoilTesting() {
+export default function Saathi() {
     const {
         register,
         handleSubmit,
@@ -12,7 +13,16 @@ export default function SoilTesting() {
         pottasium: "",
         cropname: "",
     });
-    const onSubmit = (data) => console.log(data);
+
+    const [result, setResult]=useState(null);
+
+    const onSubmit = async (data) => {
+        await axios.post("https://ml-models-deployment.onrender.com/fertilizer-predict",data).then((res)=>{
+            let ss=res.data.recommendation.replace(/"/g, '`');
+            setResult(ss);
+        })
+        .catch((e)=>console.log(e))
+    }
 
     return (
         <div className="m-auto w-[80%] items-center h-[100%] mt-[70px]">
@@ -56,7 +66,10 @@ export default function SoilTesting() {
                                 <p className="text-red-500">Value of Phosphorous is required!</p>
                             )}
                         </div>
-                        <label htmlFor="Pottasium" className="font-semibold text-slate-500">
+                    </div>
+
+                    <div className="md:col-span-1 flex flex-col">
+                    <label htmlFor="Pottasium" className="font-semibold text-slate-500">
                             Pottasium
                         </label>
                         <div className="mb-10">
@@ -70,9 +83,6 @@ export default function SoilTesting() {
                                 <p className="text-red-500">Value of Pottasium is required!</p>
                             )}
                         </div>
-                    </div>
-
-                    <div className="md:col-span-1 flex flex-col">
                         <label htmlFor="cropname" className="font-semibold text-slate-500">
                             Select category
                         </label>
@@ -118,6 +128,7 @@ export default function SoilTesting() {
                     className="cursor-pointer w-[80%] py-3 px-7 text-center text-md font-semibold hover:opacity-75 bg-[#3B8056] text-white rounded-md"
                 />
             </form>
+            <p>{result}</p>
         </div>
     );
 }

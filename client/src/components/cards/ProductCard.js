@@ -4,6 +4,7 @@ import temp from "../../img/temp/apples.jpg";
 
 import StarRatings from 'react-star-ratings';
 import { useNavigate } from "react-router-dom";
+import { quantity_type } from "../../constants";
 
 export default function ProductCard({ product,category }) {
 
@@ -16,12 +17,12 @@ export default function ProductCard({ product,category }) {
 
   return (
     <div className="border border-1 border-slate-700 border-opacity-20 cursor-pointer" onClick={()=>handleClick(product)}>
-      <img src={temp} alt={product.name} className="w-full h-28 sm:h-36 object-cover" />
+      <img src={product.img_url} alt={product.name} className="w-full h-28 sm:h-36 object-cover" />
       <div className="flex flex-col w-[80%] m-auto mt-4 mb-4">
         <p className="text-base text-[#473E3E] font-thin">{product.name}</p>
         <StarRatings rating={product.rating} starRatedColor='#F4BA4D' starDimension="15px" starSpacing="2px" />
         <p className="text-sm font-bold text-[#473E3E] mt-2">
-          ₹{product.price} <span className="font-thin">/ {product.per}</span>
+          ₹{product.price} <span className="font-thin">/ {quantity_type[product.quantity_type]}</span>
         </p>
         <div className="text-xs mt-2 text-[#A6A6A6]">
             <p>Seller: {product.seller}</p>

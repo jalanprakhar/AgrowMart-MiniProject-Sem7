@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import ProductCard from "../components/cards/ProductCard";
 import { api } from "../api";
+import {categories} from "../constants";
 
 export default function CategoryPage() {
 
@@ -32,6 +33,26 @@ export default function CategoryPage() {
     "Livestock",
     "Seeds",
   ];
+  function binarySearch(category){
+    console.log(allProducts);
+    let ans=-1;
+    let lo=0;
+    let hi=allProducts.length-1;
+    while(lo<=hi){
+      let mid=lo+Math.floor((hi-lo)/2);
+      if(allProducts[mid].category<category){
+        lo=mid+1;
+      }
+      else if(allProducts[mid].category>category){
+        hi=mid-1;
+      }
+      else{
+        ans=mid;
+        hi=mid-1;
+      }
+    }
+    return ans;
+  }
   const [selectedCategory, setSelectedCategory] = useState(displayCategoryName);
   const CategorySelect = (e) => {
     setSelectedCategory(e.value);
@@ -49,6 +70,26 @@ export default function CategoryPage() {
   const SortSelect = (e) => {
     setSelectedSort(e.value);
   };
+
+  
+  useEffect(()=>{
+    if(allProducts.length>0){
+      const s=selectedCategory.toLowerCase();
+      const k=categories.findIndex((item)=>item===s);
+      let idx=binarySearch(k);
+      console.log(idx)
+      let list=[];
+      if(idx!==-1){
+        console.log("here");
+        for(let i=idx;i<allProducts.length;i++){
+          console.log(i);
+          if(categories[allProducts[i].category]!==selectedCategory.toLowerCase()) break;
+          list.push(allProducts[i]);
+        }
+      }
+      setProducts(list);
+    }
+  },[selectedCategory,allProducts])
 
   return (
     <div>

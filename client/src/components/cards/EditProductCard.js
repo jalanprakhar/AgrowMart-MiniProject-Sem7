@@ -21,7 +21,7 @@ export default function EditProductCard({product}) {
 
   return (
     <div className="border border-1 border-slate-700 border-opacity-20 cursor-pointer">
-      <img src={temp} alt={product.name} className="w-full h-28 sm:h-36 object-cover" />
+      <img src={product.img_url} alt={product.name} className="w-full h-28 sm:h-36 object-cover" />
       <div className="flex flex-col w-[80%] m-auto mt-4 mb-4">
         <p className="text-base text-[#473E3E] font-thin">{product.name}</p>
         <p className="text-sm font-bold text-[#473E3E] mt-2">

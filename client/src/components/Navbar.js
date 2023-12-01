@@ -156,10 +156,10 @@ export default function Navbar({ user }) {
                   className={
                     "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 bg-[#BD966D] text-white rounded-md"
                   }
-                  to="/soiltesting"
+                  to="/saathi"
                   onClick={() => setNavbarOpen(!navbarOpen)}
                 >
-                  Soil Testing
+                  My Saathi
                 </Link>
               </li>
               <li className="nav-item">
