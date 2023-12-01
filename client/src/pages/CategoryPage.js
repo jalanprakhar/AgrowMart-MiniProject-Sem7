@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-
 import ProductCard from "../components/cards/ProductCard";
 
 const products = [
@@ -15,7 +13,7 @@ const products = [
     per: "kg",
     date: "2021-10-10",
     seller: "Rahul Farms",
-    rating: 4.5,
+    rating: 4,
   },
   {
     id:2,
@@ -25,7 +23,7 @@ const products = [
     per: "dozen",
     date: "2021-10-10",
     seller: "Rahul Farms",
-    rating: 4.5,
+    rating: 3,
   },
   {
     id:2,
@@ -35,7 +33,7 @@ const products = [
     per: "kg",
     date: "2021-10-10",
     seller: "Rahul Farms",
-    rating: 4.5,
+    rating: 4,
   },
   {
     id:3,
@@ -45,7 +43,7 @@ const products = [
     per: "dozen",
     date: "2021-10-10",
     seller: "Rahul Farms",
-    rating: 4.5,
+    rating: 4,
   },
   {
     id:4,
@@ -55,7 +53,7 @@ const products = [
     per: "kg",
     date: "2021-10-10",
     seller: "Rahul Farms",
-    rating: 4.5,
+    rating: 4,
   },
   {
     id:5,
@@ -65,7 +63,7 @@ const products = [
     per: "dozen",
     date: "2021-10-10",
     seller: "Rahul Farms",
-    rating: 4.5,
+    rating: 4,
   },
 ];
 
