@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import temp from "../img/temp/profuser 2.png";
+import { useSelector } from "react-redux";
 
 export default function Navbar({ user }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -20,6 +21,8 @@ export default function Navbar({ user }) {
       document.removeEventListener("mousedown", clickedOutside);
     };
   }, [navbarOpen]);
+
+  const {cartTotalQuantity}=useSelector(state=> state.cart);
 
   return (
     <div className="fixed w-full top-0 z-20" ref={ref}>
@@ -109,12 +112,23 @@ export default function Navbar({ user }) {
                   to="/cart"
                   onClick={() => setNavbarOpen(!navbarOpen)}
                 >
-                  <i className="fa-solid fa-cart-shopping"></i>
+                  <i className="fa-solid fa-cart-shopping"></i><span className="text-sm ml-1 text-white bg-red-500 rounded-full px-2 py-0.5">{cartTotalQuantity}</span>
                 </Link>
               </li>
               </>
               }
               {user.role==="farmer" && <>
+              <li className="nav-item">
+                <Link
+                  className={
+                    "mx-6 my-2 flex items-center text-sm font-semibold leading-snug text-[#636363] hover:opacity-75"
+                  }
+                  to="/myproducts"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  My Products
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link
                   className={

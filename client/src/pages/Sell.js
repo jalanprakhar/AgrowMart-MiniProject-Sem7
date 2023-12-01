@@ -73,7 +73,7 @@ export default function Sell() {
                Select Quantity Type
             </label>
             <select placeholder="Select Quantity Type" {...register("quantityType")} className="border-[1.5px] border-slate-400 rounded-md mt-1 mb-10 px-2 py-3">
-                <option value="perPiece">Per Piece (each)</option>
+                <option value="piece">Piece (each)</option>
                 <option value="dozen">Dozen (dz)</option>
                 <option value="kg">Kilograms (kg)</option>
                 <option value="gram">Grams (g)</option>
