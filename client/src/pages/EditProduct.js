@@ -1,26 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router";
 
-export default function Sell() {
+export default function EditProduct() {
+  const location = useLocation();
+  const productId = location.state.id;
+
+  const [product, setProduct] = useState({
+    id: 1,
+    name: "Apple",
+    category: "fruits",
+    img_url: "dbewd",
+    price: 100,
+    quantity: 12,
+    per: "kg",
+    date: "2021-10-10",
+    seller: "Rahul Farms",
+    contact: "+91 9876543210",
+    email: "lorem@gmail.com",
+    rating: 4,
+    number_of_ratings: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    reviews: [
+      {
+        name: "Lorem Ipsum",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+        ratings: 3,
+      },
+      {
+        name: "Lorem Ipsum",
+        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+        ratings: 4,
+      },
+    ],
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    productName: "",
-    category: "",
-    price: 0,
-    quantityType: "",
-    quantity:0,
-    about:"",
-    img_url:"",
+    defaultValues: {
+      productName: product.name,
+      category: product.category,
+      price: product.price,
+      quantityType: product.per,
+      quantity: product.quantity,
+      about: product.description,
+      img_url: product.img_url
+    },
   });
   const onSubmit = (data) => console.log(data);
+  console.log(errors);
 
   return (
     <div className="m-auto w-[80%] items-center h-[100%] mt-[70px]">
       <h1 className="text-lg md:text-2xl font-semibold text-center">
-        Add your Product!
+        Edit your Product!
       </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}

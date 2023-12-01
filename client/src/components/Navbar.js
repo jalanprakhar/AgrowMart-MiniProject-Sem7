@@ -87,7 +87,7 @@ export default function Navbar({ user }) {
                   className={
                     "mx-6 my-2 flex items-center text-sm font-semibold leading-snug text-[#636363] hover:opacity-75"
                   }
-                  to="/orders"
+                  to="/trackorders"
                   onClick={() => setNavbarOpen(!navbarOpen)}
                 >
                   Track Orders

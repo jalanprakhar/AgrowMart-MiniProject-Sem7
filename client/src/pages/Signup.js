@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import signup from "../img/signup.svg";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Signup() {
   const {
@@ -9,13 +10,17 @@ export default function Signup() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    name: "",
+    first_name: "",
+    last_name:"",
     email: "",
     password: "",
     role: "",
+    phone_number: "",
   });
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  }
 
   const navigate = useNavigate();
 
@@ -36,45 +41,69 @@ export default function Signup() {
           <div className="md:grid md:grid-cols-2 md:gap-10 w-[80%] justify-center">
             <div className="md:col-span-1 flex flex-col">
               <label htmlFor="Name" className="font-semibold text-slate-500">
-                Name
+                First Name
               </label>
+              <div className="mb-10">
+                <input
+                  type="text"
+                  className="text-md border-[1.5px] border-slate-400 rounded-md mt-1 px-2 py-3 w-[100%]"
+                  placeholder="Name"
+                  {...register("first_name", { required: true, maxLength: 100 })}
+                />
+                {errors.first_name?.type === 'required' && <p className="text-red-500">First name is required.</p>}
+              </div>
+              <label htmlFor="Name" className="font-semibold text-slate-500">
+                Last Name
+              </label>
+              <div className="mb-10">
               <input
                 type="text"
-                className="text-md border-[1.5px] border-slate-400 rounded-md mt-1 mb-10 px-2 py-3"
+                className="text-md border-[1.5px] border-slate-400 rounded-md mt-1 px-2 py-3 w-[100%]"
                 placeholder="Name"
-                {...register("name", { required: true, maxLength: 100 })}
+                {...register("last_name", { required: true, maxLength: 100 })}
               />
+              {errors.last_name?.type === 'required' && <p className="text-red-500">Last name is required.</p>}
+              </div>
               <label
-                htmlFor="Password"
+                htmlFor="Phone"
                 className="font-semibold text-slate-500"
               >
-                Password
+                Phone No. (+91)
               </label>
+              <div className="mb-10">
               <input
-                type="password"
-                className="border-[1.5px] border-slate-400 rounded-md mt-1 mb-10 px-2 py-3"
-                placeholder="Password"
-                {...register("password", { required: true, minLength: 6 })}
+                type="phone"
+                className="border-[1.5px] border-slate-400 rounded-md mt-1 px-2 py-3 w-[100%]"
+                placeholder="Phone No."
+                {...register("phone_number", { required: true, minLength: 10, maxLength:10 })}
               />
+              {errors.phone_number?.type === 'maxLength' && <p className="text-red-500">Phone number must be of length 10.</p>}
+              {errors.phone_number?.type === 'minLength' && <p className="text-red-500">Phone number must be of length 10.</p>}
+              </div>
             </div>
 
             <div className="md:col-span-1 flex flex-col">
               <label htmlFor="Email" className="font-semibold text-slate-500">
                 Email
               </label>
+              <div className="mb-10">
               <input
                 type="text"
-                className="border-[1.5px] border-slate-400 rounded-md mt-1 mb-10 px-2 py-3"
+                className="border-[1.5px] border-slate-400 rounded-md mt-1 px-2 py-3 w-[100%]"
                 placeholder="Email"
                 {...register("email", {
                   required: true,
                   pattern: /^\S+@\S+$/i,
                 })}
               />
+              {errors.email?.type === 'required' && <p className="text-red-500">Email is required.</p>}
+              {errors.email?.type === 'pattern' && <p className="text-red-500">Enter valid Email.</p>}
+              </div>
               <label htmlFor="Role" className="font-semibold text-slate-500">
                 Role
               </label>
-              <div className="mt-1 mb-10 flex flex-row h-[100%] items-center">
+              <div className="mb-10 h-[100%] w-[100%]">
+              <div className="mt-1 flex flex-row items-center">
                 <input
                   {...register("role", { required: true})}
                   type="radio"
@@ -89,6 +118,25 @@ export default function Signup() {
                   className="cursor-pointer w-6 h-6 mr-2 ml-6"
                 />
                 <label htmlFor="Shopper">Shopper</label>
+              </div>
+              {errors.role?.type === 'required' && <p className="text-red-500">Role is required.</p>}
+              </div>
+
+              <label
+                htmlFor="Password"
+                className="font-semibold text-slate-500"
+              >
+                Password
+              </label>
+              <div className="mb-10">
+              <input
+                type="password"
+                className="border-[1.5px] border-slate-400 rounded-md mt-1 px-2 py-3 w-[100%]"
+                placeholder="Password"
+                {...register("password", { required: true, minLength: 6 })}
+              />
+              {errors.password?.type === 'required' && <p className="text-red-500">Password is required.</p>}
+              {errors.password?.type === 'minLength' && <p className="text-red-500">Password must be of length 6.</p>}
               </div>
             </div>
           </div>
