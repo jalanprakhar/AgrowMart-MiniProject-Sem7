@@ -5,6 +5,7 @@ export const api = {
   signup: (email, password,name,role,phone_number) => API.post("/auth/signup", { email, password,name,role,phone_number }),
   getSelf: (id)=>API.get("/auth/"+id),
   addReview:(name, desc, rating, productId)=>API.post("/review",{name, desc, rating, productId}),
+  getReview:(id)=>API.get("/review/"+id),
   addProduct:(name, category, total_quantity, quantity_type, img_url, price, farmer_id, desc)=>API.post("/product",{name, category, total_quantity, quantity_type, img_url, price,farmer_id, desc}),
   getAllProducts:()=>API.get("/product"),
   getSingleProduct:(id)=>API.get("/product/id/"+id),

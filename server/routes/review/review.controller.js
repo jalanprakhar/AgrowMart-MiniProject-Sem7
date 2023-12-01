@@ -30,4 +30,15 @@ async function addReview(req, res) {
     res.status(409).send(e.message);
   }
 }
-module.exports = { addReview };
+async function getReview(req,res){
+  try{
+    const {id}=req.params;
+    const reviews=await Review.find({productId:id});
+    return res.status(200).send(reviews);
+
+
+  }catch(e){
+    return res.status(404).send(e);
+  }
+}
+module.exports = { addReview,getReview };
