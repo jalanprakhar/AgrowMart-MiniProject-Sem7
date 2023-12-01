@@ -4,6 +4,7 @@ const {
   getAllOrdersByShopper,
   getAllOrdersByFarmer,
   getAllOrders,
+  markOrderCompleted
 } = require("./order.controller");
 const orderRouter = express.Router();
 orderRouter.post("/", addOrder);

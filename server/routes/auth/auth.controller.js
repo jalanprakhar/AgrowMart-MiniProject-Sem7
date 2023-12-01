@@ -41,7 +41,6 @@ async function signup(req, res) {
     res.status(409).send("Missing email, role or password");
     return;
   }
-  const generatedUserId = uuidv4();
   const hashed_password = await bcrypt.hash(password, 10);
   try {
     const sanitizedEmail = email.toLowerCase();
@@ -60,7 +59,7 @@ async function signup(req, res) {
 
     const insertedUser = await newUser.save();
 
-    const token = jwt.sign({ user_id: generatedUserId }, process.env.JWT_KEY, {
+    const token = jwt.sign({ user_id: insertedUser._id }, process.env.JWT_KEY, {
       expiresIn: "8d",
     });
     res.status(201).json({ token, userId: insertedUser._id });
@@ -69,8 +68,20 @@ async function signup(req, res) {
     res.status(409).send(e.message);
   }
 }
+async function getSingleUser(req,res){
+  const {id}=req.params;
+
+  try{
+    const user=await User.findById(id);
+    return res.status(200).send(user);
+
+  }catch(e){
+    return res.status(401).send(e);
+  }
+}
 
 module.exports = {
   login,
   signup,
+  getSingleUser
 };
