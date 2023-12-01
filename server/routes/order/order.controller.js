@@ -1,7 +1,7 @@
 const Order = require("../../models/order");
 
 async function addOrder(req, res) {
-  const { orderObjects, totalAmount, farmerId, shopperId } = req.body;
+  const { orderObject, totalAmount, farmerId, shopperId } = req.body;
   const newOrder = new Order({
     orderObject,
     totalAmount,
