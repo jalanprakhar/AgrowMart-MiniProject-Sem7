@@ -69,7 +69,7 @@ export default function Navbar({ user }) {
                   About
                 </Link>
               </li>
-              {user.role==="shopper" && 
+              {user?.role==="shopper" && 
               <>
               <li className="nav-item">
                 <Link
@@ -117,7 +117,7 @@ export default function Navbar({ user }) {
               </li>
               </>
               }
-              {user.role==="farmer" && <>
+              {user?.role==="farmer" && <>
               <li className="nav-item">
                 <Link
                   className={
@@ -187,7 +187,7 @@ export default function Navbar({ user }) {
                 </Link>
               </li>
               </>}
-              <li className="nav-item">
+              {user && <li className="nav-item">
                 <Link
                   className={
                     "mx-6 my-2 flex items-center text-sm font-semibold leading-snug text-[#636363] hover:opacity-75"
@@ -202,7 +202,7 @@ export default function Navbar({ user }) {
                     alt="profile"
                   />
                 </Link>
-              </li>
+              </li>}
               
             </ul>
           </div>

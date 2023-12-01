@@ -2,9 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import signup from "../img/signup.svg";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useCookies } from "react-cookie";
+import { api } from "../api";
 
 export default function Signup() {
+
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const {
     register,
     handleSubmit,
@@ -19,7 +23,12 @@ export default function Signup() {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    api.signup(data.email,data.password,data.first_name+" "+data.last_name,data.role,data.phone_number).then((res)=>{
+      setCookie("AuthToken", res.data.token);
+      setCookie("UserId", res.data.userId);
+    }).catch((e)=>{
+      console.log(e.response.data);
+    })
   }
 
   const navigate = useNavigate();

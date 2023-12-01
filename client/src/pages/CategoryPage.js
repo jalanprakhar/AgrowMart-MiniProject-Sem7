@@ -1,73 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import ProductCard from "../components/cards/ProductCard";
-
-const products = [
-  {
-    id:1,
-    name: "Apple",
-    img: "",
-    price: 100,
-    per: "kg",
-    date: "2021-10-10",
-    seller: "Rahul Farms",
-    rating: 4,
-  },
-  {
-    id:2,
-    name: "Banana",
-    img: "",
-    price: 100,
-    per: "dozen",
-    date: "2021-10-10",
-    seller: "Rahul Farms",
-    rating: 3,
-  },
-  {
-    id:2,
-    name: "Apple",
-    img: "",
-    price: 100,
-    per: "kg",
-    date: "2021-10-10",
-    seller: "Rahul Farms",
-    rating: 4,
-  },
-  {
-    id:3,
-    name: "Banana",
-    img: "",
-    price: 100,
-    per: "dozen",
-    date: "2021-10-10",
-    seller: "Rahul Farms",
-    rating: 4,
-  },
-  {
-    id:4,
-    name: "Apple",
-    img: "",
-    price: 100,
-    per: "kg",
-    date: "2021-10-10",
-    seller: "Rahul Farms",
-    rating: 4,
-  },
-  {
-    id:5,
-    name: "Banana",
-    img: "",
-    price: 100,
-    per: "dozen",
-    date: "2021-10-10",
-    seller: "Rahul Farms",
-    rating: 4,
-  },
-];
+import { api } from "../api";
 
 export default function CategoryPage() {
+
+  const [allProducts, setAllProducts]=useState([]);
+  const [products, setProducts]=useState([]);
+
+  useEffect(()=>{
+    api.getAllProducts().then((res)=> setAllProducts(res.data)).catch((e)=>{
+      console.log(e.response.data);
+    })
+  },[])
 
   const navigate = useNavigate();
 

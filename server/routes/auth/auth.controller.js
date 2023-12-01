@@ -24,7 +24,7 @@ async function login(req, res) {
         process.env.JWT_KEY,
         { expiresIn: "1d" }
       );
-      res.status(200).json({ token, userId: existingUser.user_id });
+      res.status(200).json({ token, userId: existingUser._id });
       return;
     }
     res.status(401).send("Invalid Credentials");
@@ -36,6 +36,8 @@ async function login(req, res) {
 
 async function signup(req, res) {
   const { email, password, name, role, phone_number } = req.body;
+
+  console.log(email, password, name, role, phone_number);
 
   if (!email || !password || !role) {
     res.status(409).send("Missing email, role or password");
@@ -70,7 +72,6 @@ async function signup(req, res) {
 }
 async function getSingleUser(req,res){
   const {id}=req.params;
-
   try{
     const user=await User.findById(id);
     return res.status(200).send(user);

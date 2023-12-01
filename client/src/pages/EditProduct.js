@@ -1,40 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { api } from "../api";
+import { categories, quantity_type } from "../constants";
+import { toast } from "react-toastify";
 
 export default function EditProduct() {
   const location = useLocation();
-  const productId = location.state.id;
-
-  const [product, setProduct] = useState({
-    id: 1,
-    name: "Apple",
-    category: "fruits",
-    img_url: "dbewd",
-    price: 100,
-    quantity: 12,
-    per: "kg",
-    date: "2021-10-10",
-    seller: "Rahul Farms",
-    contact: "+91 9876543210",
-    email: "lorem@gmail.com",
-    rating: 4,
-    number_of_ratings: 10,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    reviews: [
-      {
-        name: "Lorem Ipsum",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-        ratings: 3,
-      },
-      {
-        name: "Lorem Ipsum",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-        ratings: 4,
-      },
-    ],
-  });
+  const product = location.state.product;
+  const navigate=useNavigate();
 
   const {
     register,
@@ -43,16 +17,40 @@ export default function EditProduct() {
   } = useForm({
     defaultValues: {
       productName: product.name,
-      category: product.category,
+      category: categories[product.category],
       price: product.price,
-      quantityType: product.per,
-      quantity: product.quantity,
-      about: product.description,
-      img_url: product.img_url
+      quantityType: quantity_type[product.quantity_type],
+      quantity: product.total_quantity,
+      about: product.desc,
+      img_url: product.img_url,
     },
   });
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const onSubmit = (data) => {
+    let type, cat;
+    for (let i = 0; i < 6; i++) {
+      if (categories[i] === data.category) {
+        cat = i;
+        break;
+      }
+    }
+    for (let i = 0; i < 6; i++) {
+      if (quantity_type[i] === data.quantityType) {
+        type = i;
+        break;
+      }
+    }
+    product.name = data.productName;
+    product.category = cat;
+    product.price = data.price;
+    product.quantity_type = type;
+    product.total_quantity = data.quantity;
+    product.desc = data.about;
+    product.img_url = data.img_url;
+    api.updateProduct(product).then((res)=>{
+        toast.success("Product updated successfully!");
+        navigate('/myproducts');
+    })
+  };
 
   return (
     <div className="m-auto w-[80%] items-center h-[100%] mt-[70px]">

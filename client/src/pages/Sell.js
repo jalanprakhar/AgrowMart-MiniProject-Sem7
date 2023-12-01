@@ -1,7 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { api } from "../api";
+import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
+import  { categories, quantity_type } from "../constants";
 
 export default function Sell() {
+
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const navigate=useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -15,7 +24,25 @@ export default function Sell() {
     about:"",
     img_url:"",
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) =>{
+    let cat,type;
+    for(let i=0;i<6;i++){
+      if(categories[i]===data.category){
+        cat=i;
+        break;
+      }
+    }
+    for(let i=0;i<6;i++){
+      if(quantity_type[i]===data.quantityType){
+        type=i;
+        break;
+      }
+    }
+    api.addProduct(data.productName,cat,data.quantity,type,data.img_url,data.price,cookies["UserId"],data.about).then((res)=>{
+      toast.success("Product added successfully!");
+      navigate('/myproducts');
+    }).catch((e)=>e.response.data);
+  };
 
   return (
     <div className="m-auto w-[80%] items-center h-[100%] mt-[70px]">
@@ -88,7 +115,7 @@ export default function Sell() {
                 <option value="fruits">Fruits</option>
                 <option value="vegetables">Vegetables</option>
                 <option value="dairy">Dairy</option>
-                <option value="dryFruits">Dry Fruits</option>
+                <option value="dryfruits">Dry Fruits</option>
                 <option value="livestock">Livestock</option>
                 <option value="seeds">Seeds</option>
               </select>

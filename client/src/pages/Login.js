@@ -2,8 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import login from "../img/login.svg";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { api } from "../api";
 
 export default function Login() {
+
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const {
     register,
     handleSubmit,
@@ -12,7 +17,12 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    api.login(data.email,data.password).then((res)=>{
+      setCookie("AuthToken", res.data.token);
+      setCookie("UserId", res.data.userId);
+    }).catch((e)=>console.log(e.response.data))
+  }
 
   const navigate = useNavigate();
 

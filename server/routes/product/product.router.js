@@ -16,6 +16,6 @@ productRouter.get("/id/:id", getProduct);
 productRouter.get("/farmer/:id", getProductByFarmerId);
 productRouter.get("/latest", getLatest);
 productRouter.put("/", updateProduct);
-productRouter.delete("/", deleteProduct);
+productRouter.delete("/:id", deleteProduct);
 
 module.exports = productRouter;

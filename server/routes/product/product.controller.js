@@ -12,6 +12,15 @@ async function createProduct(req, res) {
     farmer_id,
     desc,
   } = req.body;
+
+  console.log(name,
+    category,
+    total_quantity,
+    quantity_type,
+    img_url,
+    price,
+    farmer_id,
+    desc)
   const prod = new Product({
     name,
     category,
@@ -44,7 +53,6 @@ async function getAllProducts(req, res) {
 async function getProduct(req, res) {
   try {
     const prod = await Product.findOne({ _id: req.params.id });
-    console.log(product);
     if (!prod) {
       return res.status(404).send({ error: "Item not found" });
     }
@@ -85,18 +93,24 @@ async function getLatest(req, res) {
 
 async function updateProduct(req, res) {
   try {
-    const product = await Product.findByIdAndUpdate(req.body._id, req.body, {
-      new: true,
-    });
+    const {name,category,img_url,price,_id,quantity_type,farmer_id,rating,number_of_ratings,desc,reviews,total_quantity}=req.body;
+    const updation={
+      $set:{
+        name:name,category:category,price:price,quantity_type:quantity_type,desc:desc,total_quantity:total_quantity
+      }
+    }
+    const product=await Product.updateOne({_id},updation)
     res.status(200).json(product);
   } catch (err) {
-    res.status(400).json(err);
+res.status(400).json(err);
   }
 }
 
 async function deleteProduct(req, res) {
   try {
-    const deletedItem = await Product.findOneAndDelete({ _id: req.body.id });
+    console.log(req.params.id);
+    const deletedItem = await Product.findOneAndDelete({ _id: req.params.id });
+    
     if (!deletedItem) {
       return res.status(404).send({ error: "Item not found" });
     }
