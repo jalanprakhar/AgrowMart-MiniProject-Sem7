@@ -59,7 +59,7 @@ function App() {
         <Route path="/myproducts" element={<div className='h-screen'><Navbar user={user}/><MyProducts /></div>} />
         <Route path="/myproducts/:id" element={<div className='h-screen'><Navbar user={user}/><EditProduct /></div>} />
         <Route path="/saathi" element={<div className='h-screen'><Navbar user={user}/><Saathi /></div>} />
-        <Route path="/cropprediction" element={<div className='h-screen'><Navbar user={user1}/><CropPrediction /></div>} />
+        <Route path="/cropprediction" element={<div className='h-screen'><Navbar user={user}/><CropPrediction /></div>} />
       </Routes>
     </BrowserRouter>
     </>
