@@ -1,0 +1,18 @@
+{
+  "name": "agrowmart-miniproject-sem7",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\"><span><img src=\"https://images2.imgbox.com/bd/7d/PF8vffaH_o.png\" height='30px' style='margin-right:10px;'/></span>AgrowMart</h1>\r <h2 align=\"center\">We grow when you grow...</h2>",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run watch --prefix server",
+    "client": "npm run start --prefix client",
+    "watch": "npm run server & npm run client",
+    "install-server": "npm install --prefix server",
+    "install-client": "npm install --prefix client",
+    "install": "npm run install-server && npm run install-client",
+    "test":"npm test --prefix server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
