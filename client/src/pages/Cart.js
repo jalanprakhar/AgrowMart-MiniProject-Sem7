@@ -28,7 +28,7 @@ export default function Cart() {
           <div className="mt-8 rounded-lg h-[1px] bg-slate-400"></div>
           <div className="mt-8 text-2xl font-bold">Subtotal <span className="font-thin">₹{cart.cartTotalAmount}</span></div>
           <button className="mt-4 py-2 px-6 flex items-center text-sm font-semibold hover:opacity-75 bg-[#3B8056] text-white rounded-md">
-            Checkout
+            Place Order
           </button>
         </div>
       ) : (
