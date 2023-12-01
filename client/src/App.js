@@ -18,6 +18,7 @@ import About from './pages/About';
 import { useEffect, useState } from 'react';
 import { api } from './api';
 import { useCookies } from "react-cookie";
+import CropPrediction from './pages/CropPrediction';
 
 function App() {
 
@@ -46,18 +47,18 @@ function App() {
       />
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<><Navbar user={user}/><Home /><Footer/></>} />
-        <Route path="/about" element={<><Navbar user={user}/><About /><Footer/></>} />
-        <Route path="/signup" element={<div className='h-screen'><Navbar user={user}/><Signup /></div>} />
-        <Route path="/login" element={<div className='h-screen'><Navbar user={user}/><Login /></div>} />
-        <Route path="/category/:category" element={<><Navbar user={user}/><CategoryPage/><Footer/></>} />
-        <Route path="/category/:category/:id" element={<><Navbar user={user}/><ProductPage/><Footer/></>} />
-        <Route path="/sell" element={<div className='h-screen'><Navbar user={user}/><Sell /></div>} />
-        <Route path="/cart" element={<div className='h-screen'><Navbar user={user}/><Cart /></div>} />
-        <Route path="/trackorders" element={<div className='h-screen'><Navbar user={user}/><TrackOrders /></div>} />
-        <Route path="/myproducts" element={<div className='h-screen'><Navbar user={user}/><MyProducts /></div>} />
-        <Route path="/myproducts/:id" element={<div className='h-screen'><Navbar user={user}/><EditProduct /></div>} />
-        <Route path="/soiltesting" element={<div className='h-screen'><Navbar user={user}/><SoilTesting /></div>} />
+        <Route path="/" element={<><Navbar user={user1}/><Home /><Footer/></>} />
+        <Route path="/signup" element={<div className='h-screen'><Navbar user={user1}/><Signup /></div>} />
+        <Route path="/login" element={<div className='h-screen'><Navbar user={user1}/><Login /></div>} />
+        <Route path="/category/:category" element={<><Navbar user={user1}/><CategoryPage/><Footer/></>} />
+        <Route path="/category/:category/:id" element={<><Navbar user={user1}/><ProductPage/><Footer/></>} />
+        <Route path="/sell" element={<div className='h-screen'><Navbar user={user1}/><Sell /></div>} />
+        <Route path="/cart" element={<div className='h-screen'><Navbar user={user1}/><Cart /></div>} />
+        <Route path="/trackorders" element={<div className='h-screen'><Navbar user={user1}/><TrackOrders /></div>} />
+        <Route path="/myproducts" element={<div className='h-screen'><Navbar user={user1}/><MyProducts /></div>} />
+        <Route path="/myproducts/:id" element={<><Navbar user={user1}/><EditProduct/><Footer/></>} />
+        <Route path="/soiltesting" element={<div className='h-screen'><Navbar user={user1}/><SoilTesting /></div>} />
+        <Route path="/cropprediction" element={<div className='h-screen'><Navbar user={user1}/><CropPrediction /></div>} />
       </Routes>
     </BrowserRouter>
     </>

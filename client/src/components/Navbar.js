@@ -162,6 +162,17 @@ export default function Navbar({ user }) {
                   Soil Testing
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link
+                  className={
+                    "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 bg-[#BD966D] text-white rounded-md"
+                  }
+                  to="/cropprediction"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  Crop Prediction
+                </Link>
+              </li>
               </>}
               {!user && <>
                 <li className="nav-item">
