@@ -13,6 +13,7 @@ import Cart from './pages/Cart';
 import TrackOrders from './pages/TrackOrders';
 import MyProducts from './pages/MyProducts';
 import EditProduct from './pages/EditProduct';
+import SoilTesting from './pages/SoilTesting';
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
         <Route path="/trackorders" element={<div className='h-screen'><Navbar user={user1}/><TrackOrders /></div>} />
         <Route path="/myproducts" element={<div className='h-screen'><Navbar user={user1}/><MyProducts /></div>} />
         <Route path="/myproducts/:id" element={<><Navbar user={user1}/><EditProduct/><Footer/></>} />
+        <Route path="/soiltesting" element={<div className='h-screen'><Navbar user={user1}/><SoilTesting /></div>} />
       </Routes>
     </BrowserRouter>
     </>
