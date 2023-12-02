@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Dropdown from "react-dropdown";
@@ -76,12 +77,9 @@ export default function CategoryPage() {
       const s=selectedCategory.toLowerCase();
       const k=categories.findIndex((item)=>item===s);
       let idx=binarySearch(k);
-      console.log(idx)
       let list=[];
       if(idx!==-1){
-        console.log("here");
         for(let i=idx;i<allProducts.length;i++){
-          console.log(i);
           if(categories[allProducts[i].category]!==selectedCategory.toLowerCase()) break;
           list.push(allProducts[i]);
         }

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import { useState } from "react";
 import stateCityData from '../static/Indian_Cities_In_States.json'

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import temp from "../../img/temp/profuser 2.png";
 

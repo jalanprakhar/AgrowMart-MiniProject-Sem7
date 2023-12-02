@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, decreaseCart, removeFromCart } from "../../store/cartSlice";

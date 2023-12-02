@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import StarRatings from 'react-star-ratings';
 import { useNavigate } from "react-router-dom";

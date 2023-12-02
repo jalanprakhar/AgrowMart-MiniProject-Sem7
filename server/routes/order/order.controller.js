@@ -18,9 +18,7 @@ async function addOrder(req, res) {
   }
 }
 async function markOrderCompleted(req, res) {
-  console.log("here");
   const { orderId } = req.body;
-  console.log(orderId);
   const updation = {
     $set: {
       isCompleted: true,

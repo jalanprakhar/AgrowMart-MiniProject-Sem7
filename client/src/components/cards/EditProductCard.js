@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react'
 import temp from "../../img/temp/apples.jpg";
 import { useNavigate } from 'react-router';

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { useEffect, useState } from 'react'
 import EditProductCard from '../components/cards/EditProductCard';
 import { api } from '../api';

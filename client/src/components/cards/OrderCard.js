@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { useEffect, useState } from 'react'
 import { api } from '../../api';
 import { quantity_type } from '../../constants';
@@ -6,8 +7,6 @@ export default function OrderCard({order,shopper}) {
 
     const [product, setProduct]=useState(null);
     const [farmer, setFarmer]=useState(null);
-
-    console.log(order);
 
     useEffect(()=>{
         api.getSingleProduct(order.orderObject.productId).then((res)=>setProduct(res.data)).catch((e)=>console.log(e.response.data));

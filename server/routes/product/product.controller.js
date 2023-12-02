@@ -12,15 +12,6 @@ async function createProduct(req, res) {
     farmer_id,
     desc,
   } = req.body;
-
-  console.log(name,
-    category,
-    total_quantity,
-    quantity_type,
-    img_url,
-    price,
-    farmer_id,
-    desc)
   const prod = new Product({
     name,
     category,
@@ -108,7 +99,6 @@ res.status(400).json(err);
 
 async function deleteProduct(req, res) {
   try {
-    console.log(req.params.id);
     const deletedItem = await Product.findOneAndDelete({ _id: req.params.id });
     
     if (!deletedItem) {
