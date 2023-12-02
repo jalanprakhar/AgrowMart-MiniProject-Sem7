@@ -112,7 +112,8 @@ export default function Navbar({ user }) {
                   to="/cart"
                   onClick={() => setNavbarOpen(!navbarOpen)}
                 >
-                  <i className="fa-solid fa-cart-shopping"></i><span className="text-sm ml-1 text-white bg-red-500 rounded-full px-2 py-0.5">{cartTotalQuantity}</span>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  {cartTotalQuantity>0 && <span className="text-sm ml-1 text-white bg-red-500 rounded-full px-2 py-0.5">{cartTotalQuantity}</span>}
                 </Link>
               </li>
               </>

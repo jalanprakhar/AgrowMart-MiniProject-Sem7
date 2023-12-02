@@ -1,7 +1,7 @@
 import React from "react";
-import temp from "../../img/temp/apples.jpg";
 import { useDispatch } from "react-redux";
 import { addToCart, decreaseCart, removeFromCart } from "../../store/cartSlice";
+import { quantity_type } from "../../constants";
 
 export default function CartItemCard({ item }) {
   const dispatch = useDispatch();
@@ -21,11 +21,11 @@ export default function CartItemCard({ item }) {
   return (
     <div className="grid grid-cols-4 items-center">
       <div className="flex flex-row gap-4 items-center">
-        <img src={temp} alt={item.name} className="cursor-pointer h-20 w-24" />
+        <img src={item.img_url} alt={item.name} className="cursor-pointer h-20 w-24" />
         <div className="flex flex-col">
           <p className="text-base text-[#473E3E] font-bold">{item.name}</p>
           <p className="text-sm text-[#473E3E] mt-2">
-            ₹{item.price} <span>/ {item.per}</span>
+            ₹{item.price} <span>/ {quantity_type[item.quantity_type]}</span>
           </p>
         </div>
       </div>

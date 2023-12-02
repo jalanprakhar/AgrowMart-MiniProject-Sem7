@@ -52,9 +52,9 @@ function App() {
         <Route path="/signup" element={<div className='h-screen'><Navbar user={user}/><Signup /></div>} />
         <Route path="/login" element={<div className='h-screen'><Navbar user={user}/><Login /></div>} />
         <Route path="/category/:category" element={<><Navbar user={user}/><CategoryPage/><Footer/></>} />
-        <Route path="/category/:category/:id" element={<><Navbar user={user}/><ProductPage/><Footer/></>} />
+        <Route path="/category/:category/:id" element={<><Navbar user={user}/><ProductPage user={user}/><Footer/></>} />
         <Route path="/sell" element={<div className='h-screen'><Navbar user={user}/><Sell /></div>} />
-        <Route path="/cart" element={<div className='h-screen'><Navbar user={user}/><Cart /></div>} />
+        <Route path="/cart" element={<div className='h-screen'><Navbar user={user}/><Cart user={user} /></div>} />
         <Route path="/trackorders" element={<div className='h-screen'><Navbar user={user}/><TrackOrders /></div>} />
         <Route path="/myproducts" element={<div className='h-screen'><Navbar user={user}/><MyProducts /></div>} />
         <Route path="/myproducts/:id" element={<div className='h-screen'><Navbar user={user}/><EditProduct /></div>} />

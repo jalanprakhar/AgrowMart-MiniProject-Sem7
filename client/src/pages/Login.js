@@ -24,6 +24,7 @@ export default function Login() {
       setCookie("AuthToken", res.data.token);
       setCookie("UserId", res.data.userId);
       navigate("/");
+      window.location.reload();
     }).catch((e)=>toast.error(e.response.data))
   }
 
