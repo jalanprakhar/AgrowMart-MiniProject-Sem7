@@ -128,7 +128,7 @@ export default function Saathi() {
                     className="cursor-pointer w-[80%] py-3 px-7 text-center text-md font-semibold hover:opacity-75 bg-[#3B8056] text-white rounded-md"
                 />
             </form>
-            <p>{result}</p>
+            <p dangerouslySetInnerHTML={{ __html: result }}></p>
         </div>
     );
 }

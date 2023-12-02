@@ -1,7 +1,7 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 import stateCityData from '../static/Indian_Cities_In_States.json'
+import axios from "axios";
 
 export default function CropPrediction() {
     const [formData, setFormData] = useState({
@@ -26,9 +26,14 @@ export default function CropPrediction() {
         setFormData({ ...formData, city: event.target.value })
     }
 
-    const handleSubmit = (e) => {
+    const [result, setResult]=useState(null);
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData)
+        await axios.post("https://ml-models-deployment.onrender.com/crop-predict",formData).then((res)=>{
+            setResult(res.data.prediction);
+        })
+        .catch((e)=>console.log(e))
     };
 
     return (
@@ -149,6 +154,7 @@ export default function CropPrediction() {
                     className="cursor-pointer w-[80%] py-3 px-7 text-center text-md font-semibold hover:opacity-75 bg-[#3B8056] text-white rounded-md"
                 />
             </form>
+            <p className="text-center text-lg">{result}</p>
         </div>
     );
 };
