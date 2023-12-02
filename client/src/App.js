@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react';
 import { api } from './api';
 import { useCookies } from "react-cookie";
 import CropPrediction from './pages/CropPrediction';
+import ProcessOrders from './pages/ProcessOrders';
 
 function App() {
 
@@ -55,11 +56,12 @@ function App() {
         <Route path="/category/:category/:id" element={<><Navbar user={user}/><ProductPage user={user}/><Footer/></>} />
         <Route path="/sell" element={<div className='h-screen'><Navbar user={user}/><Sell /></div>} />
         <Route path="/cart" element={<div className='h-screen'><Navbar user={user}/><Cart user={user} /></div>} />
-        <Route path="/trackorders" element={<div className='h-screen'><Navbar user={user}/><TrackOrders /></div>} />
+        <Route path="/trackorders" element={<div className='h-screen'><Navbar user={user}/><TrackOrders user={user} /></div>} />
         <Route path="/myproducts" element={<div className='h-screen'><Navbar user={user}/><MyProducts /></div>} />
         <Route path="/myproducts/:id" element={<div className='h-screen'><Navbar user={user}/><EditProduct /></div>} />
         <Route path="/saathi" element={<div className='h-screen'><Navbar user={user}/><Saathi /></div>} />
         <Route path="/cropprediction" element={<div className='h-screen'><Navbar user={user}/><CropPrediction /></div>} />
+        <Route path="/processorders" element={<div className='h-screen'><Navbar user={user}/><ProcessOrders user={user} /></div>} />
       </Routes>
     </BrowserRouter>
     </>

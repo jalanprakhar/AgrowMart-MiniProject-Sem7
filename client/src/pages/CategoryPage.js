@@ -34,7 +34,6 @@ export default function CategoryPage() {
     "Seeds",
   ];
   function binarySearch(category){
-    console.log(allProducts);
     let ans=-1;
     let lo=0;
     let hi=allProducts.length-1;

@@ -14,8 +14,8 @@ export const api = {
   updateProduct:(product)=>API.put("/product",product),
   deleteProduct:(id)=>API.delete("/product/"+id),
   addOrder:(orderObject, totalAmount, farmerId, shopperId)=>API.post("/order",{orderObject, totalAmount, farmerId, shopperId}),
-  markOrderCompleted:(orderId)=>API.put("/product",{orderId}),
-  getAllOrders:()=>API.get("/product"),
-  getAllOrdersByShopper:(shopperId)=>API.get(`/product/shopperId=${shopperId}`),
-  getAllOrdersByFarmer:(farmerId)=>API.get(`/product/farmerId=${farmerId}`)
+  markOrderCompleted:(orderId)=>API.put("/order",{orderId}),
+  getAllOrders:()=>API.get("/order"),
+  getAllOrdersByShopper:(shopperId)=>API.get(`/order?shopperId=${shopperId}`),
+  getAllOrdersByFarmer:(farmerId)=>API.get(`/order?farmerId=${farmerId}`)
 }
