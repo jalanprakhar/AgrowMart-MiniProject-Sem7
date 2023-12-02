@@ -35,7 +35,7 @@ export default function Navbar({ user }) {
               className="text-2xl font-bold leading-relaxed mr-4 my-2 whitespace-nowrap text-[#636363] flex flex-row"
               to="/"
             >
-              <img src={logo} className="h-6 mt-2" alt="logo" />
+              <img src={logo} className="h-12 mt-2" alt="logo" />
             </Link>
             <button
               className=" cursor-pointer leading-none mx-6 my-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"

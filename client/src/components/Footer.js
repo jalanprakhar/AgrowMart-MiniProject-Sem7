@@ -6,7 +6,7 @@ export default function Footer() {
     <div className="bg-[#F8F8F8] mt-24">
       <div className="flex flex-col md:flex-row items-center pt-12 pb-12 lg:px-32">
         <div className="basis-1/3 flex flex-col m-auto justify-center">
-          <img src={logo} alt="logo" className="h-8 w-24" />
+          <img src={logo} alt="logo" className="w-32" />
         </div>
         <div className="basis-1/3 mt-10 md:mt-0">
           <h1 className="text-lg font-bold mb-2">Contact</h1>

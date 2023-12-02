@@ -98,7 +98,11 @@ export default function CropPrediction() {
                                 onChange={(e) => { setFormData({ ...formData, ph: e.target.value }) }}
                             />
                         </div>
-                        <label htmlFor="Rainfall" className="font-semibold text-slate-500">
+                        
+                    </div>
+
+                    <div className="md:col-span-1 flex flex-col">
+                    <label htmlFor="Rainfall" className="font-semibold text-slate-500">
                             Rainfall (in mm)
                         </label>
                         <div className="mb-10">
@@ -110,9 +114,6 @@ export default function CropPrediction() {
                                 onChange={(e) => { setFormData({ ...formData, rainfall: e.target.value }) }}
                             />
                         </div>
-                    </div>
-
-                    <div className="md:col-span-1 flex flex-col">
                         <label htmlFor="State" className="font-semibold text-slate-500">
                             State
                         </label>
