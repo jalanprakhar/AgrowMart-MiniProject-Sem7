@@ -1,0 +1,11 @@
+flask
+flask_cors
+requests
+tensorflow
+Pillow
+gunicorn==20.1.0
+torch
+pandas
+numpy
+torchvision
+scikit-learn==1.2.2
